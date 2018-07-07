@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #540038;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.consolewindow {
+  font-size: 20px;
+  display: inline;
+}
+
+.preconsole {
+  font-weight: 800;
+  color: rgba(99, 206, 0, 0.801);
+}
+
