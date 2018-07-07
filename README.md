@@ -1,5 +1,5 @@
 # Web-Terminal
 
-Creating a website having a terminal ui.
-Functionality not yet added.
-Only ui made.
+- Creating a website having a terminal ui.
+- More work needed 
+- Only working commands : ls, clear

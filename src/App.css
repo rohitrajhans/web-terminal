@@ -16,3 +16,27 @@ body {
   color: rgba(99, 206, 0, 0.801);
 }
 
+.terminalBox > div {
+  display: block;
+}
+
+.errorText {
+  font-size: 20px;
+  color: rgb(150, 133, 133);
+}
+
+
+#active::after {
+  content: '';
+  display: inline-block;
+  background: #fff;
+  height: 16px;
+  width: 10px;
+  margin: 0 4px;
+  animation: flicker 0.8s ease-in infinite;
+}
+
+@keyframes flicker {
+  from { background: #fff; }
+  to { background: #540038; }
+}
