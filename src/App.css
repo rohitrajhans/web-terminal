@@ -6,6 +6,13 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.helpline h4 {
+  font-size: 20px;
+}
+.helpline h4 i {
+  color: #00f1ff;
+}
+
 .consolewindow {
   font-size: 20px;
   display: inline;
@@ -25,9 +32,13 @@ body {
   color: rgb(150, 133, 133);
 }
 
-@keyframes flicker {
-  from { background: #fff; }
-  to { background: #540038; }
+.displayText {
+  color: #00ffea;
+  margin-right: 50px;
+}
+
+.displayText > div > span {
+  color: red;
 }
 
 .textbox {
