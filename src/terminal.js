@@ -9,11 +9,9 @@ class Terminal extends Component {
         this.state = {
             default: [1],
             history: [],
-            dir: ["Home", "About", "Contact"],
-            error: false
+            dir: ["Home", "About", "Contact"]
         };
         this.submitCommands = this.submitCommands.bind(this);
-        this.handle = this.handle.bind(this);
         this.processCommand = this.processCommand.bind(this);
     }
 
@@ -22,29 +20,18 @@ class Terminal extends Component {
         window.addEventListener("keypress", this.handle);
     }
 
-    handle(e) {
-        document.getElementById('active').innerHTML += e.key;
-    }
-
     submitCommands(e) {
-       
-        if( e.key === 'Backspace') {
-            e.preventDefault();
-            var text = document.getElementById('active').innerHTML;
-            document.getElementById('active').innerHTML = text.slice(0,-1);
-        }
 
         if( e.key === 'Enter' ) {
             e.preventDefault();
-            let str = document.getElementById('active').innerHTML;
+            let str = document.getElementById('active').value;
             this.processCommand(str);
             let number = this.state.default;
             number.push(number.length+1)
             this.setState({
                 default: number,
                 history: this.state.history,
-                dir: this.state.dir,
-                error: this.state.error
+                dir: this.state.dir
             });
         };
 
@@ -53,7 +40,13 @@ class Terminal extends Component {
     }
 
     processCommand(str) {
+
+        // console.log(str);
         
+        
+        let currentConsole = document.getElementsByClassName('consolewindow');
+        currentConsole = currentConsole[currentConsole.length-1];
+
         let history = this.state.history;
         history.push(str);
 
@@ -61,8 +54,7 @@ class Terminal extends Component {
             this.setState({
                 default: [],
                 history: this.state.history,
-                dir: this.state.dir,
-                error: false
+                dir: this.state.dir
             });
         return;
         };
@@ -70,52 +62,18 @@ class Terminal extends Component {
         if( history[history.length-1] === 'ls') {
             let newdiv = document.createElement("div")
             newdiv.innerHTML = '<span>' + this.state.dir.join(' ') + '</span>'
-            document.getElementById('active').appendChild(newdiv);
+            currentConsole.appendChild(newdiv);
             return;
         };
         
-        this.setState({
-            default: this.state.default,
-            history: this.state.history,
-            dir: this.state.dir,
-            error: true
-        });
+        let errordiv = document.createElement('div');
+        errordiv.innerHTML = '<span> Error: Command Not Found </span>'; 
+        errordiv.className += 'errorText';
+        currentConsole.appendChild(errordiv);
     
     }
 
-    renderError() {
-        return(
-            <div className="terminalBox">
-                {
-                    this.state.default.map( (id,i) => {
-                        if(i === this.state.default.length-1)
-                            return (
-                                <App idno={id}
-                                    key = {i}
-                                    idname = "active"
-                                />
-                            )
-                        else if( i === this.state.default.length-2) 
-                            return(
-                                <App idno={id}
-                                    key={i}
-                                    idname="error"
-                                />
-                            )
-                        else return(
-                            <App idno={id}
-                                key={i}
-                                idname="inactive" 
-                            />
-                    )})
-                }
-            </div>
-        )
-    }
-
     render() {
-        if(this.state.error)
-            return this.renderError();
         return(
             <div className="terminalBox">
                 {

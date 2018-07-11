@@ -25,18 +25,17 @@ body {
   color: rgb(150, 133, 133);
 }
 
-
-#active::after {
-  content: '';
-  display: inline-block;
-  background: #fff;
-  height: 16px;
-  width: 10px;
-  margin: 0 4px;
-  animation: flicker 0.8s ease-in infinite;
-}
-
 @keyframes flicker {
   from { background: #fff; }
   to { background: #540038; }
+}
+
+.textbox {
+  background: #540038;
+  border: none;
+}
+
+textarea:focus, input:focus {
+  outline-offset: 0px !important;
+  outline: none !important;
 }
